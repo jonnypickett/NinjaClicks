@@ -51,7 +51,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ],
-        "init ninjaclicks": [
+        "init-ninjaclicks": [
             "@php artisan migrate",
             "@php artisan db:seed --class=\"ProviderColorsSeeder\""
         ]
