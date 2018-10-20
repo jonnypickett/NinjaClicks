@@ -53,8 +53,8 @@
         ],
         "init ninjaclicks": [
             "@php artisan migrate",
-            "@php artisan db:seed --class=\"ProviderColorsSeeder\"",
-        ],
+            "@php artisan db:seed --class=\"ProviderColorsSeeder\""
+        ]
     },
     "config": {
         "preferred-install": "dist",
