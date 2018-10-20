@@ -1,3 +1,3 @@
 <template>
-    <h1>Laravel 5 Vue SPA Authentication</h1>
+    <h1>NinjaClicks</h1>
 </template>

@@ -15,35 +15,35 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home,
-            meta: {
-                auth: false
-            }
-        },
-        {
-            path: '/register',
-            name: 'register',
-            component: Register,
-            meta: {
-                auth: false
-            }
-        },
-        {
-            path: '/signin',
-            name: 'signin',
-            component: SignIn,
-            meta: {
-                auth: false
-            }
-        },
-        {
-            path: '/providers',
-            name: 'providers',
             component: Providers,
             meta: {
-                auth: true
+                auth: false
             }
         },
+        // {
+        //     path: '/register',
+        //     name: 'register',
+        //     component: Register,
+        //     meta: {
+        //         auth: false
+        //     }
+        // },
+        // {
+        //     path: '/signin',
+        //     name: 'signin',
+        //     component: SignIn,
+        //     meta: {
+        //         auth: false
+        //     }
+        // },
+        // {
+        //     path: '/providers',
+        //     name: 'providers',
+        //     component: Providers,
+        //     meta: {
+        //         auth: true
+        //     }
+        // },
         {
             path: '/clicks',
             name: 'clicks',

@@ -17,7 +17,7 @@ export default {
         return {
             home: { name: 'NinjaClicks', to: 'home' },
             links: [
-                { name: 'Providers', to: 'providers' },
+                // { name: 'Providers', to: 'providers' },
                 { name: 'Clicks', to: 'clicks' },
             ]
         }
