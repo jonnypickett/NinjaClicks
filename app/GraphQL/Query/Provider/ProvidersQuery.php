@@ -3,6 +3,7 @@
 namespace App\GraphQL\Query\Provider;
 
 use App\Provider;
+use App\Repositories\Contracts\ProviderRepositoryInterface;
 use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -10,9 +11,17 @@ use GraphQL\Type\Definition\Type;
 
 class ProvidersQuery extends Query
 {
+    protected $repo;
+    
     protected $attributes = [
         'name' => 'providers',
     ];
+
+    public function __construct(ProviderRepositoryInterface $repo)
+    {
+        parent::__construct();
+        $this->repo = $repo;
+    }
 
     public function type()
     {
@@ -38,20 +47,6 @@ class ProvidersQuery extends Query
     {
         $fields = $info->getFieldSelection();
 
-        $providers = Provider::query();
-
-        foreach ($args as $arg => $value) {
-            if ($arg === 'id') {
-                $providers->whereId($value);
-            }
-        }
-
-        foreach ($fields as $field => $keys) {
-            if ($field === 'clicks') {
-                $providers->with('clicks');
-            }
-        }
-
-        return $providers->orderBy('display_name')->get();
+        return $this->repo->all($args, $fields);
     }
 }

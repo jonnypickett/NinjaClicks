@@ -3,6 +3,7 @@
 namespace App\GraphQL\Query\Click;
 
 use App\Click;
+use App\Repositories\Contracts\ClickRepositoryInterface;
 use Folklore\GraphQL\Support\Query;
 use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -10,9 +11,17 @@ use GraphQL\Type\Definition\Type;
 
 class ClicksQuery extends Query
 {
+    protected $repo;
+
     protected $attributes = [
         'name' => 'clicks',
     ];
+
+    public function __construct(ClickRepositoryInterface $repo)
+    {
+        parent::__construct();
+        $this->repo = $repo;
+    }
 
     public function type()
     {
@@ -38,20 +47,6 @@ class ClicksQuery extends Query
     {
         $fields = $info->getFieldSelection();
 
-        $clicks = Click::query();
-
-        foreach ($args as $arg => $value) {
-            if ($arg === 'id') {
-                $clicks->whereId($value);
-            }
-        }
-
-        foreach ($fields as $field => $keys) {
-            if ($field === 'provider') {
-                $clicks->with('provider');
-            }
-        }
-
-        return $clicks->orderBy('date', 'desc')->get();
+        return $this->repo->all($args, $fields);
     }
 }
