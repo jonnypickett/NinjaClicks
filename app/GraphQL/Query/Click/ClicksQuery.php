@@ -8,15 +8,25 @@ use GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class AllClicksQuery extends Query
+class ClicksQuery extends Query
 {
     protected $attributes = [
-        'name' => 'allClicks',
+        'name' => 'clicks',
     ];
 
     public function type()
     {
         return Type::listOf(GraphQL::type('Click'));
+    }
+
+    public function args()
+    {
+        return [
+            'id' => [
+                'name' => 'id',
+                'type' => Type::int(),
+            ],
+        ];
     }
 
     // public function authenticated($root, $args, $currentUser)
@@ -29,6 +39,12 @@ class AllClicksQuery extends Query
         $fields = $info->getFieldSelection();
 
         $clicks = Click::query();
+
+        foreach ($args as $arg => $value) {
+            if ($arg === 'id') {
+                $clicks->whereId($value);
+            }
+        }
 
         foreach ($fields as $field => $keys) {
             if ($field === 'provider') {

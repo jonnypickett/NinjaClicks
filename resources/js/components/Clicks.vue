@@ -5,7 +5,7 @@
         </template>
         <template v-else>
             <clicks-table
-                :clicks="allClicks"
+                :clicks="clicks"
             />
         </template>
     </div>
@@ -17,7 +17,7 @@ import ClicksTable from './ClicksTable.vue'
 
 const clicksQuery = gql`
     query {
-        allClicks {
+        clicks {
             id
             total_clicks
             date
@@ -35,12 +35,12 @@ export default {
     },
 
     data: () => ({
-        allClicks: [],
+        clicks: [],
         loading: 0
     }),
 
     apollo: {
-        allClicks: {
+        clicks: {
             query: clicksQuery,
             loadingKey: 'loading',
         },

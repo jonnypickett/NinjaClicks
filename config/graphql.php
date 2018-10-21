@@ -91,10 +91,8 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'allClicks' => App\GraphQL\Query\Click\AllClicksQuery::class,
-                'clickById' => App\GraphQL\Query\Click\ClickByIdQuery::class,
-                'allProviders' => App\GraphQL\Query\Provider\AllProvidersQuery::class,
-                'providerById' => App\GraphQL\Query\Provider\ProviderByIdQuery::class,
+                'clicks' => App\GraphQL\Query\Click\ClicksQuery::class,
+                'providers' => App\GraphQL\Query\Provider\ProvidersQuery::class,
             ],
             'mutation' => [
                 'signIn' => App\GraphQL\Mutation\SignInMutation::class,

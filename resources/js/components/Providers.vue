@@ -4,7 +4,7 @@
             Loading
         </template>
         <template v-else>
-            <providers-chart :providers="allProviders"></providers-chart>
+            <providers-chart :providers="providers"></providers-chart>
         </template>
     </div>
 </template>
@@ -15,7 +15,7 @@ import ProvidersChart from './ProvidersChart.vue'
 
 const providersQuery = gql`
     query {
-        allProviders {
+        providers {
             id
             name
             display_name
@@ -35,12 +35,12 @@ export default {
     },
 
     data: () => ({
-        allProviders: [],
+        providers: [],
         loading: 0,
     }),
 
     apollo: {
-        allProviders: {
+        providers: {
             query: providersQuery,
             loadingKey: 'loading',
         }
