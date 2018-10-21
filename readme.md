@@ -19,7 +19,7 @@ Once you have the project located on your computer navigate to the root of the p
 
 ## Future Improvements
 
-- [ ] Create interface for Clicks and Provider repositories and bind implementations in ioc container and use repos in GraphQL query classes
+- [x] Create interface for Clicks and Provider repositories and bind implementations in ioc container and use repos in GraphQL query classes
 - [ ] Put Provider chart and Clicks table behind auth on SPA
 - [ ] Poll api for new entries
 - [ ] Flesh out GraphQL queries with things like pagination
