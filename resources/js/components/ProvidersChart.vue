@@ -103,7 +103,7 @@
                     if (p.clicks.length) {
                         dataSets.push({
                             label: p.display_name,
-                            backgroundColor: '#'+p.hex_color,
+                            backgroundColor: p.hex_color,
                             data: this.getProviderClicksData(p, year)
                         })
                     }

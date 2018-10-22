@@ -11,12 +11,14 @@ class ProviderColorsSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         $rows = DB::table('provider')->get(['id']);
 
         foreach ($rows as $row) {
             DB::table('provider')
                 ->whereId($row->id)
-                ->update(['hex_color' => substr(md5(rand()), 0, 6)]);
+                ->update(['hex_color' => $faker->hexcolor]);
         }
     }
 }
