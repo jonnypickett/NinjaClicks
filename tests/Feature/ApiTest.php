@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use App\Provider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test graphQL request with no request data
      *
@@ -57,6 +60,45 @@ class ApiTest extends TestCase
             ->assertJson([
                 'data' => [
                     'clicks' => [],
+                ],
+            ]);
+    }
+
+    /**
+     * Test graphQL providers query
+     *
+     * @return void
+     */
+    public function testProvidersQuery()
+    {
+        $provider = factory(Provider::class)->create();
+
+        $response = $this->json('GET', '/api/graphql', ['query' => '
+            {
+                providers(id: '.$provider->id.' ) {
+                    id
+                    name
+                    display_name
+                    hex_color
+                    clicks {
+                        id
+                    }
+                }
+            }']);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'providers' => [
+                        [
+                            'id' => $provider->id,
+                            'name' => $provider->name,
+                            'display_name' => $provider->display_name,
+                            'hex_color' => $provider->hex_color,
+                            'clicks' => []
+                        ]
+                    ],
                 ],
             ]);
     }
